@@ -1,0 +1,32 @@
+=== ROULETTE ===
+Player: ERCA
+Final Money: $0
+Rounds Won: 0
+Player: Brizuela
+Final Money: $-297955989
+Rounds Won: 1
+---------------------------
+=== ROULETTE ===
+Player: xd
+Final Money: $0
+Rounds Won: 0
+Player: diego
+Final Money: $0
+Rounds Won: 0
+---------------------------
+=== ROULETTE ===
+Player: Kenneth
+Final Money: $-297955288
+Rounds Won: 1
+Player: Blanca
+Final Money: $352
+Rounds Won: 1
+---------------------------
+=== ROULETTE ===
+Player: Isra
+Final Money: $0
+Rounds Won: 0
+Player: Jouse
+Final Money: $0
+Rounds Won: 0
+---------------------------

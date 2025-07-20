@@ -1,0 +1,5 @@
+=== THE HOUSE OF DICE ===
+Player 1: xd - Wins: 0 - Balance: $-1
+Player 2: diego - Wins: 1 - Balance: $1
+Winner: diego
+-----------------------------------------
