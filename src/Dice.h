@@ -76,6 +76,11 @@ void showDiceHorizontal(int d1, int d2)
 float getValidBet(float maxBet, const string& playerName)
 {
     float bet;
+    if (maxBet <= 0) {
+        centerText(playerName + ", you have $0.00. You cannot bet. Game over!", 60, RED);
+        // Return a special value to indicate game over
+        return -1.0f;
+    }
     while (true)
     {
         centerText(playerName + ", you have $" + to_string(maxBet) + ". Enter your bet:", 60, CYAN);
@@ -85,9 +90,7 @@ float getValidBet(float maxBet, const string& playerName)
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            centerText("Invalid bet! A minimum bet of $1 was assigned.", 60, YELLOW);
-            bet = 1;
-            break;
+            centerText("Invalid bet! Please enter a valid amount.", 60, YELLOW);
         }
         else
         {
@@ -139,6 +142,10 @@ void playVsComputer()
         originalPlayer2Name = data[1].name;
     }
 
+    // --- Save original balances ---
+    float originalBalance0 = data[0].balance;
+    float originalBalance1 = data[1].balance;
+
     add();
     Save();
 
@@ -158,6 +165,10 @@ void playVsComputer()
 
         float bet[2];
         bet[0] = getValidBet(data[0].balance, data[0].name);
+        if (bet[0] == -1.0f) {
+            centerText("You cannot continue. Game over!", 60, RED);
+            break;
+        }
 
         // --- FIXED COMPUTER BET ---
         float minBet = 1.0f;
@@ -185,16 +196,14 @@ void playVsComputer()
             cout << endl;
             centerText(data[0].name + " wins the round!", 60, GREEN);
             wins[0]++;
-            data[0].balance += bet[1];
-            data[1].balance -= bet[1];
+            // No balance change
         }
         else if (sum[1] > sum[0])
         {
             cout << endl;
             centerText(data[1].name + " wins the round!", 60, RED);
             wins[1]++;
-            data[1].balance += bet[0];
-            data[0].balance -= bet[0];
+            // No balance change
         }
         else
         {
@@ -204,29 +213,26 @@ void playVsComputer()
 
         cout << endl;
         centerText("Current Scores:", 60, CYAN);
-        centerText(data[0].name + " [" + to_string(wins[0]) + " wins, $" + to_string(data[0].balance) + "]", 60, CYAN);
+        centerText(data[0].name + " [" + to_string(wins[0]) + " wins]", 60, CYAN);
         centerText("VS", 60, CYAN);
-        centerText(data[1].name + " [" + to_string(wins[1]) + " wins, $" + to_string(data[1].balance) + "]", 60, CYAN);
+        centerText(data[1].name + " [" + to_string(wins[1]) + " wins]", 60, CYAN);
 
         centerText("Press any key to continue...", 60, CYAN);
         system("pause >nul");
 
         round++;
-
-        if (data[0].balance <= 0 || data[1].balance <= 0)
-        {
-            cout << endl;
-            centerText("A player has run out of money! Ending game...", 60, RED);
-            break;
-        }
     }
+
+    // --- Restore original balances ---
+    data[0].balance = originalBalance0;
+    data[1].balance = originalBalance1;
 
     cout << endl;
     centerText("==================== FINAL RESULT ====================", 60, YELLOW);
     if (wins[0] > wins[1])
-        centerText(data[0].name + " wins the game with $" + to_string(data[0].balance) + " remaining.", 60, GREEN);
+        centerText(data[0].name + " wins the game!", 60, GREEN);
     else if (wins[1] > wins[0])
-        centerText(data[1].name + " wins the game with $" + to_string(data[1].balance) + " remaining.", 60, RED);
+        centerText(data[1].name + " wins the game!", 60, RED);
     else
         centerText("The game ended in a tie.", 60, YELLOW);
     centerText("======================================================", 60, YELLOW);
@@ -234,8 +240,8 @@ void playVsComputer()
 
     ofstream file("Dice_scores.txt", ios::app);
     file << "=== THE HOUSE OF DICE (vs Computer) ===\n";
-    file << "Player: " << data[0].name << " - Wins: " << wins[0] << " - Balance: $" << data[0].balance << endl;
-    file << "Computer - Wins: " << wins[1] << " - Balance: $" << data[1].balance << endl;
+    file << "Player: " << data[0].name << " - Wins: " << wins[0] << endl;
+    file << "Computer - Wins: " << wins[1] << endl;
     if (wins[0] > wins[1])
         file << "Winner: " << data[0].name << "\n";
     else if (wins[1] > wins[0])
@@ -297,8 +303,18 @@ void runTheHouseofDice()
                 cout << endl;
 
                 float bet[2];
-                for (int i = 0; i < 2; i++)
+                bool endGame = false;
+                for (int i = 0; i < 2; i++) {
                     bet[i] = getValidBet(data[i].balance, data[i].name);
+                    if (bet[i] == -1.0f) {
+                        endGame = true;
+                        break;
+                    }
+                }
+                if (endGame) {
+                    centerText("A player cannot continue. Game over!", 60, RED);
+                    break;
+                }
 
                 int sum[2];
                 for (int i = 0; i < 2; i++)
