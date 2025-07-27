@@ -242,8 +242,6 @@ void runTheHouseofDice()
 {
     srand(time(0));
     int wins[2] = {0, 0};
-    add();
-    Save();
 
     while (true) {
         system("cls");
@@ -274,11 +272,10 @@ void runTheHouseofDice()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (option == 1) {
             // 2 player game
+            add(); // <-- Always ask for both player names before 2 player game
+            Save();
             int round = 1;
             wins[0] = wins[1] = 0;
-            add();
-            Save();
-            data[1].name = data[1].name; // Ensure name is not overwritten
             while (wins[0] < 3 && wins[1] < 3 && round <= 6)
             {
                 system("cls");

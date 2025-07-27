@@ -3,3 +3,8 @@ Player 1: xd - Wins: 0 - Balance: $-1
 Player 2: diego - Wins: 1 - Balance: $1
 Winner: diego
 -----------------------------------------
+=== THE HOUSE OF DICE (vs Computer) ===
+Player: Heraldo - Wins: 3 - Balance: $1148
+Computer - Wins: 2 - Balance: $49
+Winner: Heraldo
+-----------------------------------------
