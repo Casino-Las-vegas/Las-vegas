@@ -149,7 +149,15 @@ void playVsComputer()
 
         float bet[2];
         bet[0] = getValidBet(data[0].balance, data[0].name);
-        bet[1] = min(1.0f + rand() % int(data[1].balance), data[1].balance); // Computer random bet
+
+        // --- FIXED COMPUTER BET ---
+        float minBet = 1.0f;
+        float maxBet = data[1].balance;
+        if (maxBet < minBet) {
+            bet[1] = maxBet; // If balance is less than 1, bet everything left
+        } else {
+            bet[1] = minBet + static_cast<float>(rand()) / RAND_MAX * (maxBet - minBet);
+        }
 
         int sum[2];
         for (int i = 0; i < 2; i++)
