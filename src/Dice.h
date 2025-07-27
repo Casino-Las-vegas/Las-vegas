@@ -15,6 +15,9 @@ extern Player data[2];
 
 using namespace std;
 
+// --- NEW: To preserve original player 2 name ---
+string originalPlayer2Name = "";
+
 string dice[6][5] = {
     {" ------- ", "|       |", "|   *   |", "|       |", " ------- "},
     {" ------- ", "| *     |", "|       |", "|     * |", " ------- "},
@@ -130,6 +133,12 @@ void playVsComputer()
 {
     srand(time(0));
     int wins[2] = {0, 0};
+
+    // --- Save original player 2 name before overwriting ---
+    if (originalPlayer2Name.empty()) {
+        originalPlayer2Name = data[1].name;
+    }
+
     add();
     Save();
 
@@ -271,8 +280,11 @@ void runTheHouseofDice()
         cin >> option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (option == 1) {
-            // 2 player game
-            add(); // <-- Always ask for both player names before 2 player game
+            // --- Restore original player 2 name if it was saved ---
+            if (!originalPlayer2Name.empty()) {
+                data[1].name = originalPlayer2Name;
+            }
+            add(); // Always ask for both player names before 2 player game
             Save();
             int round = 1;
             wins[0] = wins[1] = 0;

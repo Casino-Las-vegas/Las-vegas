@@ -8,3 +8,8 @@ Player: Heraldo - Wins: 3 - Balance: $1148
 Computer - Wins: 2 - Balance: $49
 Winner: Heraldo
 -----------------------------------------
+=== THE HOUSE OF DICE (vs Computer) ===
+Player: Heraldo - Wins: 3 - Balance: $1082
+Computer - Wins: 1 - Balance: $315
+Winner: Heraldo
+-----------------------------------------
