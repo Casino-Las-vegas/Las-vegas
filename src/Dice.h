@@ -15,7 +15,7 @@ extern Player data[2];
 
 using namespace std;
 
-// --- NEW: To preserve original player 2 name ---
+// preserve original player 2 name 
 string originalPlayer2Name = "";
 
 string dice[6][5] = {
@@ -106,7 +106,7 @@ void showShortRules()
 {
     setColor(MAGENTA);
     cout << "\n";
-    centerText("QUICK RULES:", 60, MAGENTA);
+    centerText("RULES:", 60, MAGENTA);
     centerText("1. Both players bet each round.", 60, MAGENTA);
     centerText("2. Each rolls 2 dice.", 60, MAGENTA);
     centerText("3. Highest total wins the round and the opponent's bet.", 60, MAGENTA);
