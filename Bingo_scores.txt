@@ -7,3 +7,12 @@ Player 2: di - Wins: 25 - Balance: $1000
 === BINGO GAME ===
 Player 1: Claudia - Wins: 25 - Balance: $6000
 Player 2: Blanca - Wins: 21 - Balance: $5800
+=== BINGO GAME ===
+Player 1: Adamaris - Wins: 25 - Balance: $750
+Player 2: Evelyn - Wins: 25 - Balance: $550
+=== BINGO GAME ===
+Player 1: Ada - Wins: 25 - Balance: $1400
+Player 2: E - Wins: 24 - Balance: $650
+=== BINGO GAME ===
+Player 1: A - Wins: 23 - Balance: $650
+Player 2: e - Wins: 25 - Balance: $850

@@ -266,6 +266,7 @@ void Boards()
         cout << data[1].name << " has lost his $" << data[1].bet << " bet. Better luck next time." << endl;
         cout << "=============================================" << endl;
         data[1].balance -= data[1].bet;
+        data[0].balance += data[1].bet;
 
         ofstream file("Bingo_scores.txt", ios::app);
         file << "=== BINGO GAME ===\n";
@@ -284,6 +285,7 @@ void Boards()
         cout << data[0].name << " has lost his $" << data[0].bet << " bet. Better luck next time." << endl;
         cout << "=============================================" << endl;
         data[0].balance -= data[0].bet;
+        data[1].balance += data[0].bet;
 
         ofstream file("Bingo_scores.txt", ios::app);
         file << "=== BINGO GAME ===\n";

@@ -45,22 +45,23 @@ int main()
             break;
 
         case 3:
-            // SetConsoleOutputCP(CP_UTF8); // Para que los símbolos como ♠ funcionen
+            SetConsoleOutputCP(CP_UTF8); // Para que los símbolos como ♠ funcionen
 
-            // ReadFiles();                         // 1. Primero cargar el archivo
-            // StartPokerBet();                     // 2. Luego pedir apuestas
-            // dealCards();                         // 3. Repartir cartas una vez cargadas
-            // printHandHorizontal(player1Hand, 5); // 4. Mostrar
-            // printHandHorizontal(player2Hand, 5);
+            ReadFiles();                         // 1. Primero cargar el archivo
+            StartPokerBet();                     // 2. Luego pedir apuestas
+            dealCards();      
+                           // 3. Repartir cartas una vez cargadas
+            printHandHorizontal(player1Hand, 5); // 4. Mostrar
+            printHandHorizontal(player2Hand, 5);
 
-            // changeCards(player1Hand, data[0].name);
-            // changeCards(player2Hand, data[1].name);
+            changeCards(player1Hand, data[0].name);
+            changeCards(player2Hand, data[1].name);
 
-            // printHandHorizontal(player1Hand, 5);
-            // printHandHorizontal(player2Hand, 5);
+            printHandHorizontal(player1Hand, 5);
+            printHandHorizontal(player2Hand, 5);
 
-            // evaluateHands();
-            // Sleep(4000);
+            evaluateHands();
+            Sleep(4000);
             break;
 
         case 4:

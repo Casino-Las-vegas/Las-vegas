@@ -38,54 +38,92 @@ void add()
 
     for (int i = total; i < 2; i++)
     {
+        bool valid = true;
         cout << " ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" << endl;
         cout << "\n \t PLAYER PROFILE " << endl;
 
-        cout << " \n \t Enter your name: ";
-        cin >> data[i].name;
-
-        bool valid = true;
-        for (char c : data[i].name)
+        do
         {
-            if (!isalpha(c))
+            cout << " \n \t Enter your name: ";
+            cin >> data[i].name;
+
+            for (char c : data[i].name)
+            {
+                if (!isalpha(c))
+                    valid = false;
+
+                else if (isalpha(c))
+                    valid = true;
+            }
+
+            if (!valid)
+            {
+
+                SetConsoleTextAttribute(hConsole, 13);
+
+                cout << "\n \t Invalid name. Use only letters (no numbers or symbols)." << endl;
+
+                SetConsoleTextAttribute(hConsole, 9);
+            }
+        } while (!valid);
+
+        do
+        {
+            valid = true; // Reiniciar la bandera en cada iteración
+
+            cout << "\n\tEnter your age: ";
+            cin >> data[i].age;
+
+            // Verifica que la entrada no sea inválida (como letras u otros símbolos)
+            if (cin.fail())
+            {
+                cin.clear();            // limpia el estado de error
+                cin.ignore(1000, '\n'); // limpia el buffer
                 valid = false;
-        }
 
-        if (!valid)
-        {
-            cout << "\n \t Invalid name. Use only letters (no numbers or symbols)." << endl;
-            exit(0);
-        }
+                SetConsoleTextAttribute(hConsole, 13); // rojo
+                cout << "\t\n\t Invalid input. Please enter a numeric age.\n";
+                SetConsoleTextAttribute(hConsole, 9); // color normal
+                continue;                             // vuelve a pedir
+            }
 
-        cout << "\n \t Enter your age: ";
-        cin >> data[i].age;
+            if (data[i].age < 18 || data[i].age > 90)
+            {
+                valid = false;
 
-        if (cin.fail())
-        {
-            cout << "\n\t\t Invalid number" << endl;
-            exit(0);
-        }
-        else if (data[i].age < 18 || data[i].age > 90)
-        {
-            cout << "\t \n Age restriction: only users aged 18 to 90 can play." << endl;
-            exit(0);
-        }
+                SetConsoleTextAttribute(hConsole, 13); // rosa
+                cout << "\t\n\t Age restriction: only users aged 18 to 90 can play." << endl;
+                SetConsoleTextAttribute(hConsole, 9);
+            }
 
-        cout << "\n \t Enter your initial balance: $ ";
-        cin >> data[i].balance;
+        } while (!valid);
 
-        if (cin.fail())
+        do
         {
-            cout << "\n\t\t Invalid number" << endl;
-            exit(0);
-        }
-        else if (data[i].balance < 500)
-        {
-            cout << "\n \t You do not have enough money to bet." << endl;
-            cout << "\n \t You must to bet more than $500." << endl;
-            cout << "\n\t Please restart the game." << endl;
-            exit(0);
-        }
+
+            cout << "\n \t Enter your initial balance: $ ";
+            cin >> data[i].balance;
+
+            if (cin.fail())
+            {
+
+                SetConsoleTextAttribute(hConsole, 13);
+
+                cout << "\n\t\t Invalid number" << endl;
+
+                SetConsoleTextAttribute(hConsole, 9);
+            }
+            else if (data[i].balance < 500)
+            {
+
+                SetConsoleTextAttribute(hConsole, 13);
+
+                cout << "\n \t You do not have enough money to bet." << endl;
+                cout << "\n \t You must to bet more than $500." << endl;
+
+                SetConsoleTextAttribute(hConsole, 9);
+            }
+        } while (data[i].balance < 700);
 
         ++total;
 

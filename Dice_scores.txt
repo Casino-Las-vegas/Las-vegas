@@ -18,3 +18,13 @@ Player: Heraldo - Wins: 1 - Balance: $0
 Computer - Wins: 1 - Balance: $1399
 Result: Tie
 -----------------------------------------
+=== THE HOUSE OF DICE ===
+Player 1: Adamaris - Wins: 2 - Balance: $250
+Player 2: Evelyn - Wins: 3 - Balance: $1050
+Winner: Evelyn
+-----------------------------------------
+=== THE HOUSE OF DICE ===
+Player 1: A - Wins: 0 - Balance: $350
+Player 2: e - Wins: 3 - Balance: $1150
+Winner: e
+-----------------------------------------
