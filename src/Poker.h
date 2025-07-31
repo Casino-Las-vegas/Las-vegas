@@ -53,35 +53,38 @@ void StartPokerBet()
             )"
          << endl;
 
-    bool valid = false;
     for (int i = 0; i < 2; i++)
     {
+        bool valid = false;
 
-        cout << "\n\t\t\t Welcome, " << data[i].name << "!" << endl;
-        cout << "\t\t\t Enter your bet amount: $";
-        cin >> data[i].bet;
+        while (!valid)
+        {
+            cout << "\n\t\t\t Welcome, " << data[i].name << "!" << endl;
+            cout << "\t\t\t Enter your bet amount: $";
+            cin >> data[i].bet;
 
-        cout << "\n\t\t\t Processing your bet...\n";
-        Sleep(2000);
+            cout << "\n\t\t\t Processing your bet...\n";
+            Sleep(2000);
 
-        if (data[i].bet < 100)
-        {
-            cout << "\n\t\t\t Minimum bet is $100. Try again.\n";
-            Sleep(2000);
-            system("cls");
-        }
-        else if (data[i].bet > data[i].balance)
-        {
-            cout << "\n\t\t\t Insufficient balance for that bet.\n";
-            Sleep(2000);
-            system("cls");
-        }
-        else
-        {
-            valid = true;
-            cout << "\n\t\t\t Bet of $" << data[i].bet << " registered successfully!\n";
-            Sleep(2000);
-            system("cls");
+            if (data[i].bet < 100)
+            {
+                cout << "\n\t\t\t Minimum bet is $100. Try again.\n";
+                Sleep(2000);
+                system("cls");
+            }
+            else if (data[i].bet > data[i].balance)
+            {
+                cout << "\n\t\t\t Insufficient balance for that bet.\n";
+                Sleep(2000);
+                system("cls");
+            }
+            else
+            {
+                valid = true;
+                cout << "\n\t\t\t Bet of $" << data[i].bet << " registered successfully!\n";
+                Sleep(2000);
+                system("cls");
+            }
         }
     }
 

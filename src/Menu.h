@@ -83,7 +83,7 @@ int ShowMenu()
     cout << "\t\t\t";
     cout << "                           ║                    2.   DICE                             ║\n";
     cout << "\t\t\t";
-    cout << "                           ║                                                          ║\n";
+    cout << "                           ║                        3                                 ║\n";
     cout << "\t\t\t";
     cout << "                           ║                    4.   ROULETTE                         ║\n";
     cout << "\t\t\t";
