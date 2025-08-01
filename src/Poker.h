@@ -119,15 +119,17 @@ bool usedCard[52] = {false};
 // Function to print a single line of a card from the file
 void printCardLine(const Card &card, int line)
 {
+
     string suitSymbol;
+
     if (card.suit == "hearts")
-        suitSymbol = "H";
+        suitSymbol = "♥";
     else if (card.suit == "diamonds")
-        suitSymbol = "D";
+        suitSymbol = "♦";
     else if (card.suit == "clubs")
-        suitSymbol = "C";
+        suitSymbol = "♣";
     else if (card.suit == "spades")
-        suitSymbol = "S";
+        suitSymbol = "♠";
     else
         suitSymbol = "?";
 
@@ -167,21 +169,27 @@ void printCardLine(const Card &card, int line)
 // Function to read cards from the file and load them into the deck
 void ReadFiles()
 {
-    ifstream cards("CartasPoker.txt");
-    if (cards.is_open())
+    ifstream files("Pokersiando.txt");
+
+    if (!files.is_open())
     {
-        for (int i = 0; i < 52; i++)
-        {
-            cards >> deck[i].number >> deck[i].suit >> deck[i].color;
-        }
+        cout << " ERROR: No se pudo abrir el archivo 'CartasPoker.txt'. Verifica que esté en la misma carpeta que el .exe\n";
+        exit(1);
     }
-    cards.close();
+
+    for (int i = 0; i < 52; i++)
+    {
+        files >> deck[i].number >> deck[i].suit >> deck[i].color;
+    }
+
+    files.close();
 }
 
 // Function to print all cards in a hand horizontally
 void printHandHorizontal(const Card hand[], int numCards)
 {
     const int NUM_LINES = 7;
+
     for (int line = 0; line < NUM_LINES; ++line)
     {
         for (int i = 0; i < numCards; ++i)
@@ -193,7 +201,6 @@ void printHandHorizontal(const Card hand[], int numCards)
     }
 }
 
-// Function to deal cards randomly from the deck to the players
 void dealCards()
 {
     srand(time(0));
@@ -250,7 +257,8 @@ void changeCards(Card hand[], const string &playerName)
             cout << "No card was changed this attempt.\n\n";
         }
     }
-    cout << "\nFinal hand of " << data[0].name << ":\n";
+    system("pause");
+    system("cls");
 }
 
 // Evaluate hands and compare them based on poker rules
@@ -442,6 +450,8 @@ void evaluateHands()
             cout << "\n Technical tie!\n";
         }
     }
+
+    system("pause");
 }
 
 #endif

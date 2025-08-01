@@ -47,17 +47,23 @@ int main()
         case 3:
             SetConsoleOutputCP(CP_UTF8); // Para que los símbolos como ♠ funcionen
 
-            ReadFiles();                         // 1. Primero cargar el archivo
-            StartPokerBet();                     // 2. Luego pedir apuestas
-            dealCards();      
-                           // 3. Repartir cartas una vez cargadas
-            printHandHorizontal(player1Hand, 5); // 4. Mostrar
+            ReadFiles();     // 1. Primero cargar el archivo
+            StartPokerBet(); // 2. Luego pedir apuestas
+            dealCards();
+            // 3. Repartir cartas una vez cargadas
+            cout << "\n--- MANO ORIGINAL DE " << data[0].name << " ---\n";
+            printHandHorizontal(player1Hand, 5);
+            cout << "\n--- MANO ORIGINAL DE " << data[1].name << " ---\n";
+            
             printHandHorizontal(player2Hand, 5);
-
+            system("pause");
+            system("cls");
             changeCards(player1Hand, data[0].name);
             changeCards(player2Hand, data[1].name);
 
+            cout << "\n--- MANO FINAL DE " << data[0].name << " ---\n";
             printHandHorizontal(player1Hand, 5);
+            cout << "\n--- MANO FINAL DE " << data[1].name << " ---\n";
             printHandHorizontal(player2Hand, 5);
 
             evaluateHands();
